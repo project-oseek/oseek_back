@@ -1,0 +1,9 @@
+${AnsiColor.BRIGHT_YELLOW} ,-----.                     ,--.
+${AnsiColor.BRIGHT_YELLOW}'  .-.  ' ,---. ,---.  ,---. |  |,-.
+${AnsiColor.BRIGHT_YELLOW}|  | |  |(  .-'| .-. :| .-. :|     /
+${AnsiColor.BRIGHT_YELLOW}'  '-'  '.-'  `)   --.\   --.|  \  \
+${AnsiColor.BRIGHT_YELLOW} `-----' `----' `----' `----'`--'`--'
+
+Powered by Spring Boot
+:: Spring Boot ${spring-boot.version} ::
+

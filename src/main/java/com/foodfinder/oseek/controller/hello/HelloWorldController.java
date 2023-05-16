@@ -1,8 +1,8 @@
-package com.foodfinder.oseek.web;
+package com.foodfinder.oseek.controller.hello;
 
 
-import com.foodfinder.oseek.web.requestDto.HelloWorldRequest;
-import com.foodfinder.oseek.web.responseDto.HelloWorldResponse;
+import com.foodfinder.oseek.dto.hello.HelloWorldResDto;
+import com.foodfinder.oseek.dto.hello.HelloWorldReqDto;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,12 +18,12 @@ public class HelloWorldController {
     }
 
     @PostMapping("/hello")
-    public HelloWorldResponse createHelloWorld(@RequestBody HelloWorldRequest helloWorldRequest){
+    public HelloWorldReqDto createHelloWorld(@RequestBody HelloWorldResDto helloWorldResDto){
 
-        HelloWorldResponse helloWorldResponse = new HelloWorldResponse();
-        helloWorldResponse.setHelloMessage("resultHello");
+        HelloWorldReqDto helloWorldReqDto = new HelloWorldReqDto();
+        helloWorldReqDto.setHelloMessage("resultHello");
 
-        return helloWorldResponse;
+        return helloWorldReqDto;
     }
 
 

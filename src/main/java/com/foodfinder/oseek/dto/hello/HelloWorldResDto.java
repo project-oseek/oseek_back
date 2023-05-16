@@ -1,10 +1,11 @@
-package com.foodfinder.oseek.web.responseDto;
+package com.foodfinder.oseek.dto.hello;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class HelloWorldResponse {
+public class HelloWorldResDto {
+
     private String helloMessage;
 }

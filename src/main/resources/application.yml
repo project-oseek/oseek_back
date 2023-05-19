@@ -16,7 +16,7 @@ springdoc:
   swagger-ui:
     path: /swagger.html
     enabled: true
-    operationsSorter: method
+    operationsSorter: alpha
     disable-swagger-default-url: true
     display-request-duration: true    #try it out 했을 때 request duration 을 추가로 찍어줌
 #    groups-order: DESC

@@ -1,7 +1,5 @@
 server:
   port: 8080
-  servlet:
-    context-path: /oseek
   tomcat:
     accesslog:
       enabled: true
@@ -11,6 +9,20 @@ server:
       file-date-format: .yyyy-MM-dd
       pattern: "%{yyyy-MM-dd HH:mm:ss}t %s %r %{User-Agent}i %{Referer}i %a %b %D"
 
+#swagger
+springdoc:
+  default-consumes-media-type: application/json;charset=UTF-8
+  default-produces-media-type: application/json;charset=UTF-8
+  swagger-ui:
+    path: /swagger.html
+    enabled: true
+    operationsSorter: method
+    disable-swagger-default-url: true
+    display-request-duration: true    #try it out 했을 때 request duration 을 추가로 찍어줌
+#    groups-order: DESC
+  api-docs:
+      enabled: true
+      path: /api-docs
 
 
 logging:

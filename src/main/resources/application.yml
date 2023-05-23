@@ -24,6 +24,33 @@ springdoc:
       enabled: true
       path: /api-docs
 
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: oseek
+    url: jdbc:mysql://43.201.10.241:3306/oseek?useSSL=false&allowPublicKeyRetrieval=true&useUnicode=true&serverTimezone=Asia/Seoul
+    password: "xxxx"
+  jpa:
+    properties:
+      hibernate:
+        format_sql: 'true'
+    show-sql: 'true'
+    hibernate:
+      ddl-auto: 'update'
+
+#spring:
+#  datasource:
+#    driver-class-name: com.mysql.cj.jdbc.Driver
+#    url: jdbc:mysql://43.201.10.241:3306/oseek?createDatabaseIfNotExist=true&useUnicode=true&characterEncoding=UTF-8&characterSetResults=UTF-8&useSSL=false
+#    username: oseek
+#    password: "oseek123456"
+#  jpa:
+#    properties:
+#      hibernate:
+#        format_sql: 'true'
+#    show-sql: 'true'
+#    hibernate:
+#      ddl-auto: 'update'
 
 logging:
   level:

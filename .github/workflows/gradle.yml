@@ -46,14 +46,14 @@ jobs:
           arguments: clean build -x test
         #run : ./gradlew clean build --exclude-task test
 
-      # 디렉토리 생성
-      - name: Make Directory
-        run: mkdir -p deploy
-
-
-      - name: Make zip file
-        run: zip -r ./$GITHUB_SHA.zip ./deploy
-        shell: bash
+#      # 디렉토리 생성
+#      - name: Make Directory
+#        run: mkdir -p deploy
+#
+#
+#      - name: Make zip file
+#        run: zip -r ./$GITHUB_SHA.zip ./deploy
+#        shell: bash
 
       #aws 인증
       - name: Configure AWS credentials
@@ -64,8 +64,15 @@ jobs:
           aws-region: ap-northeast-2
 
       #s3 업로드
-      - name: Upload to S3
-        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/
+#      - name: Upload to S3
+#        run: aws s3 cp --region ap-northeast-2 ./$GITHUB_SHA.zip s3://$S3_BUCKET_NAME/
+      - name: Upload to AWS S3
+        run: |
+          aws deploy push \
+            --application-name ${{ env.CODE_DEPLOY_APPLICATION_NAME }} \
+            --ignore-hidden-files \
+            --s3-location s3://$S3_BUCKET_NAME/$GITHUB_SHA.zip \
+            --source 
 
       - name: Deploy to AWS EC2 from S3
         run: |

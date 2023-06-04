@@ -28,8 +28,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: oseek
-    url: jdbc:mysql://13.209.211.192:3306/oseek?serverTimezone=UTC&characterEncoding=UTF-8
-    password: "oseek1234"
+    url: jdbc:mysql://localhost:3306/oseek?serverTimezone=UTC&characterEncoding=UTF-8
+    password: "oseek123456"
 
   jpa:
     properties:
@@ -37,7 +37,10 @@ spring:
         format_sql: 'true'
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+
 
 #spring:
 #  datasource:

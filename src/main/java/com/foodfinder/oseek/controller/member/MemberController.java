@@ -1,6 +1,5 @@
 package com.foodfinder.oseek.controller.member;
 
-
 import com.foodfinder.oseek.common.CommController;
 import com.foodfinder.oseek.dto.member.MemberReqDto;
 import com.foodfinder.oseek.service.MemberService;

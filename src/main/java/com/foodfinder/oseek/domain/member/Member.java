@@ -19,7 +19,7 @@ public class Member extends RegisterDateBaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberId;
 
     private String nickname;
     private String email;

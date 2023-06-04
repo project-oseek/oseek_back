@@ -10,7 +10,7 @@ import lombok.Setter;
 public class MemberReqDto {
 
     @NotBlank
-    private int id;
+    private int memberId;
 
     @NotBlank
     private String nickname;

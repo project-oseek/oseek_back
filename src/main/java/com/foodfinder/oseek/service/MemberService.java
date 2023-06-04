@@ -16,7 +16,7 @@ public class MemberService {
 
     @Transactional
     public Long memberSave(MemberReqDto reqDto){
-        return memberRepository.save(reqDto.toEntity()).getId();
+        return memberRepository.save(reqDto.toEntity()).getMemberId();
     }
 
 }

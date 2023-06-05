@@ -11,7 +11,6 @@ server:
 
 #swagger
 springdoc:
-  default-consumes-media-type: application/json;charset=UTF-8
   default-produces-media-type: application/json;charset=UTF-8
   swagger-ui:
     path: /swagger.html
@@ -28,8 +27,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: oseek
-    url: jdbc:mysql://localhost:3306/oseek?serverTimezone=UTC&characterEncoding=UTF-8
-    password: "oseek123456"
+    url: jdbc:mysql://13.209.211.192:3306/oseek?serverTimezone=UTC&characterEncoding=UTF-8
+    password: "oseek1234"
 
   jpa:
     properties:

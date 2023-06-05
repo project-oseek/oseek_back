@@ -1,7 +1,7 @@
 package com.foodfinder.oseek.service;
 
 import com.foodfinder.oseek.domain.member.Member;
-import com.foodfinder.oseek.dto.member.MemberInfoResDTO;
+import com.foodfinder.oseek.dto.member.MemberInfoResDto;
 import com.foodfinder.oseek.dto.member.MemberReqDto;
 import com.foodfinder.oseek.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,8 @@ public class MemberService {
     }
 
     @Transactional
-    public MemberInfoResDTO findMemberInfo(Long memberId){
-        return new MemberInfoResDTO(getMember(memberId));
+    public MemberInfoResDto findMemberInfo(Long memberId){
+        return new MemberInfoResDto(getMember(memberId));
     }
 
     public Member getMember(Long memberId){

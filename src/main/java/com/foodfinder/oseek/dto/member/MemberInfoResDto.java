@@ -4,7 +4,7 @@ import com.foodfinder.oseek.domain.member.Member;
 import lombok.Getter;
 
 @Getter
-public class MemberInfoResDTO {
+public class MemberInfoResDto {
     private Long memberId;
     private String nickname;
     private String email;
@@ -12,7 +12,7 @@ public class MemberInfoResDTO {
 //    private List<String> favoriteTypes;
 //    private List<String> keywords;
 
-    public MemberInfoResDTO(Member member){
+    public MemberInfoResDto(Member member){
         this.memberId = member.getMemberId();
         this.nickname = member.getNickname();
         this.email = member.getEmail();

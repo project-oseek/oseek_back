@@ -36,6 +36,21 @@ dependencies {
     //Swagger
     implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0' //스프링 3.0버전
 
+    //oauth2
+    implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+
+    //security
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    //jwt
+    implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.5'
+    runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.5'
+
+    //Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+
 }
 
 //빌드 시 -plain.jar파일 안만들어지게

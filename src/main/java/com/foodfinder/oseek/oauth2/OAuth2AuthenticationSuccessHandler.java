@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.stereotype.Component;
@@ -16,6 +17,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import java.io.IOException;
 import java.net.URI;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import static com.foodfinder.oseek.oauth2.CookieAuthorizationRequestRepository.REDIRECT_URI_PARAM_COOKIE_NAME;
 
@@ -30,6 +32,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
     private final JwtTokenProvider jwtTokenProvider;
     private final CookieAuthorizationRequestRepository cookieAuthorizationRequestRepository;
 
+    private final RedisTemplate redisTemplate;
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException {
@@ -53,11 +56,13 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
         //JWT 생성
-        MemberResDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication);
+        MemberResDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication.getName(), authentication.getAuthorities());
+
+        redisTemplate.opsForValue().set("RT:" + authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
 
         return UriComponentsBuilder.fromUriString(targetUrl)
-                .queryParam("access_token", tokenInfo.getAccessToken())
-                .queryParam("refresh_token", tokenInfo.getRefreshToken())
+                .queryParam("accessToken", tokenInfo.getAccessToken())
+                .queryParam("refreshToken", tokenInfo.getRefreshToken())
                 .build().toUriString();
     }
 

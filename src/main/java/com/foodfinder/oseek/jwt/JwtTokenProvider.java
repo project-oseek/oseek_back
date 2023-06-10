@@ -1,6 +1,5 @@
 package com.foodfinder.oseek.jwt;
 
-import com.foodfinder.oseek.common.config.ExpireTime;
 import com.foodfinder.oseek.dto.member.MemberResDto;
 import com.foodfinder.oseek.oauth2.UserPrincipal;
 import io.jsonwebtoken.*;
@@ -43,14 +42,14 @@ public class JwtTokenProvider {
         this.key = Keys.hmacShaKeyFor(keyBytes);
     }
 
-    //Authentication 을 가지고 AccessToken, RefreshToken 을 생성하는 메서드
-    public MemberResDto.TokenInfo generateToken(Authentication authentication) {
-
-        Object principal = authentication.getPrincipal();
-        String id = ((UserPrincipal) principal).getId().toString();
-
-        return generateToken(id, authentication.getAuthorities());
-    }
+//    //Authentication 을 가지고 AccessToken, RefreshToken 을 생성하는 메서드
+//    public MemberResDto.TokenInfo generateToken(Authentication authentication) {
+//
+////        Object principal = authentication.getPrincipal();
+////        String id = ((UserPrincipal) principal).getId().toString();
+//
+//        return generateToken(authentication.getName(), authentication.getAuthorities());
+//    }
 
     //name, authorities 를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
     public MemberResDto.TokenInfo generateToken(String name, Collection<? extends GrantedAuthority> inputAuthorities) {
@@ -67,7 +66,7 @@ public class JwtTokenProvider {
                 .claim(AUTHORITIES_KEY, authorities)
                 .claim("type", TYPE_ACCESS)
                 .setIssuedAt(now)   //토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + ExpireTime.ACCESS_TOKEN_EXPIRE_TIME))  //토큰 만료 시간 설정
+                .setExpiration(new Date(now.getTime() + JwtExpireTime.ACCESS_TOKEN_EXPIRE_TIME))  //토큰 만료 시간 설정
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
@@ -75,16 +74,16 @@ public class JwtTokenProvider {
         String refreshToken = Jwts.builder()
                 .claim("type", TYPE_REFRESH)
                 .setIssuedAt(now)   //토큰 발행 시간 정보
-                .setExpiration(new Date(now.getTime() + ExpireTime.REFRESH_TOKEN_EXPIRE_TIME)) //토큰 만료 시간 설정
+                .setExpiration(new Date(now.getTime() + JwtExpireTime.REFRESH_TOKEN_EXPIRE_TIME)) //토큰 만료 시간 설정
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
         return MemberResDto.TokenInfo.builder()
                 .grantType(BEARER_TYPE)
                 .accessToken(accessToken)
-                .accessTokenExpirationTime(ExpireTime.ACCESS_TOKEN_EXPIRE_TIME)
+                .accessTokenExpirationTime(JwtExpireTime.ACCESS_TOKEN_EXPIRE_TIME)
                 .refreshToken(refreshToken)
-                .refreshTokenExpirationTime(ExpireTime.REFRESH_TOKEN_EXPIRE_TIME)
+                .refreshTokenExpirationTime(JwtExpireTime.REFRESH_TOKEN_EXPIRE_TIME)
                 .build();
     }
 
@@ -142,4 +141,13 @@ public class JwtTokenProvider {
         }
         return null;
     }
+
+    public Long getExpiration(String accessToken) {
+        // accessToken 남은 유효시간
+        Date expiration = Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(accessToken).getBody().getExpiration();
+        // 현재 시간
+        Long now = new Date().getTime();
+        return (expiration.getTime() - now);
+    }
+
 }

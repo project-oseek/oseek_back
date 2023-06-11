@@ -10,8 +10,8 @@ name: Java Spring CI with Gradle
 env:
   AWS_REGION: ap-northeast-2
   S3_BUCKET_NAME: oseek-deploy
-  CODE_DEPLOY_APPLICATION_NAME: oseek-group
-  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: codeDeploy-group
+  CODE_DEPLOY_APPLICATION_NAME: oseek-codedeploy
+  CODE_DEPLOY_DEPLOYMENT_GROUP_NAME: oseek-deploy
 
 on:
   push:

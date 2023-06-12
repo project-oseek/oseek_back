@@ -2,10 +2,9 @@ package com.foodfinder.oseek.domain.member;
 
 
 import com.foodfinder.oseek.common.RegisterDateBaseTimeEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import com.foodfinder.oseek.enums.AuthProvider;
+import com.foodfinder.oseek.enums.Role;
+import jakarta.persistence.*;
 import lombok.*;
 
 
@@ -24,5 +23,14 @@ public class Member extends RegisterDateBaseTimeEntity {
     private String nickname;
     private String email;
     private String address;
+
+
+    @Enumerated(EnumType.STRING)
+    private AuthProvider authProvider;
+
+//    private String oauth2Id;
+
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }

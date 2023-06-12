@@ -1,7 +1,6 @@
 package com.foodfinder.oseek.jwt;
 
-import com.foodfinder.oseek.dto.member.MemberResDto;
-import com.foodfinder.oseek.oauth2.UserPrincipal;
+import com.foodfinder.oseek.dto.auth.TokenInfo;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -52,7 +51,7 @@ public class JwtTokenProvider {
 //    }
 
     //name, authorities 를 가지고 AccessToken, RefreshToken 을 생성하는 메서드
-    public MemberResDto.TokenInfo generateToken(String name, Collection<? extends GrantedAuthority> inputAuthorities) {
+    public TokenInfo generateToken(String name, Collection<? extends GrantedAuthority> inputAuthorities) {
         //권한 가져오기
         String authorities = inputAuthorities.stream()
                 .map(GrantedAuthority::getAuthority)
@@ -78,7 +77,7 @@ public class JwtTokenProvider {
                 .signWith(key, SignatureAlgorithm.HS256)
                 .compact();
 
-        return MemberResDto.TokenInfo.builder()
+        return TokenInfo.builder()
                 .grantType(BEARER_TYPE)
                 .accessToken(accessToken)
                 .accessTokenExpirationTime(JwtExpireTime.ACCESS_TOKEN_EXPIRE_TIME)

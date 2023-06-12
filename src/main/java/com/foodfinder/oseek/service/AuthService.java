@@ -3,7 +3,7 @@ package com.foodfinder.oseek.service;
 import com.foodfinder.oseek.common.code.ApiCode;
 import com.foodfinder.oseek.common.exception.BaseException;
 import com.foodfinder.oseek.dto.auth.AuthReqDto;
-import com.foodfinder.oseek.dto.member.MemberResDto;
+import com.foodfinder.oseek.dto.auth.TokenInfo;
 import com.foodfinder.oseek.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class AuthService {
     private final RedisTemplate redisTemplate;
 
 
-    public MemberResDto.TokenInfo regenerateToken(AuthReqDto authReqDto) throws BaseException {
+    public TokenInfo regenerateToken(AuthReqDto authReqDto) throws BaseException {
 
         // 1. Refresh Token 검증
         if (!jwtTokenProvider.validateToken(authReqDto.getRefreshToken())) {
@@ -48,7 +48,7 @@ public class AuthService {
         }
 
         // 4. 새로운 토큰 생성
-        MemberResDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication.getName(), authentication.getAuthorities());
+        TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication.getName(), authentication.getAuthorities());
 
         // 5. RefreshToken Redis 업데이트
         redisTemplate.opsForValue()

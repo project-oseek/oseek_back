@@ -1,6 +1,6 @@
 package com.foodfinder.oseek.oauth2;
 
-import com.foodfinder.oseek.dto.member.MemberResDto;
+import com.foodfinder.oseek.dto.auth.TokenInfo;
 import com.foodfinder.oseek.jwt.JwtTokenProvider;
 import com.foodfinder.oseek.lib.CookieUtils;
 import jakarta.servlet.http.Cookie;
@@ -56,7 +56,7 @@ public class OAuth2AuthenticationSuccessHandler extends SimpleUrlAuthenticationS
         String targetUrl = redirectUri.orElse(getDefaultTargetUrl());
 
         //JWT 생성
-        MemberResDto.TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication.getName(), authentication.getAuthorities());
+        TokenInfo tokenInfo = jwtTokenProvider.generateToken(authentication.getName(), authentication.getAuthorities());
 
         redisTemplate.opsForValue().set("RT:" + authentication.getName(), tokenInfo.getRefreshToken(), tokenInfo.getRefreshTokenExpirationTime(), TimeUnit.MILLISECONDS);
 

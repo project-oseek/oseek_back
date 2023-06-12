@@ -33,9 +33,5 @@ public class MemberController extends CommController {
         return SuccessReturn(user);
     }
 
-    @GetMapping("/redirecttest")
-    public ResponseEntity test(){
-        return SuccessReturn("hello world");
-    }
 
 }

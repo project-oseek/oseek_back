@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Tag(name = "memberFoodKeyword", description = "음식 키워드 정보 API")
+@Tag(name = "memberFoodKeyword", description = "맴버 음식 키워드 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/memberfoodkeyword")
@@ -25,10 +25,7 @@ public class MemberFoodKeywordController extends CommController {
 
     private final MemberFoodKeywordService memberFoodKeywordService;
 
-    @Operation(summary = "맴버 음식 키워드 저장", description = "맴버의 음식 키워드를 저정합니다.", responses = {
-            @ApiResponse(responseCode = "200", description = "맴버 정보 수정 성공",
-                    content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MemberFoodKeywordReqDto.class))))
-    })
+    @Operation(summary = "맴버 음식 키워드 리스트 저장", responses = { @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MemberFoodKeywordReqDto.class)))})
     @PostMapping()
     public ResponseEntity saveMemberFoodKeyword(@AuthenticationPrincipal User user, @RequestBody List<MemberFoodKeywordReqDto> reqDtoList){
         Long memberId = Long.valueOf((user.getUsername()));

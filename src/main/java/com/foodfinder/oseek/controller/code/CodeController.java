@@ -14,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@Tag(name = "code", description = "코드 정보 API")
+@Tag(name = "code", description = "코드 API")
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/code")
@@ -23,9 +23,8 @@ public class CodeController extends CommController {
     @Autowired
     private CodeService codeService;
 
-    @Operation(summary = "코드 조회", description = "특정한 코드 그룹에 속한 코드 list를 반환합니다.",
-               responses = {@ApiResponse(responseCode = "200", description = "코드 조회 성공", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CodeResDto.class))))
-    })
+    @Operation(summary = "코드 조회", description = "codeGroup 기준으로 코드를 조회합니다.",
+               responses = {@ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = CodeResDto.class))))})
     @GetMapping("/{codeGroup}")
     public ResponseEntity findCodes(@PathVariable String codeGroup){
         return SuccessReturn(codeService.findCodes(codeGroup));

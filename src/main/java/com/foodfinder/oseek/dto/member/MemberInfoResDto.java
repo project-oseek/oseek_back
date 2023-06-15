@@ -8,16 +8,14 @@ public class MemberInfoResDto {
     private Long memberId;
     private String nickname;
     private String email;
-    private String address;
-//    private List<String> favoriteTypes;
+    private String location;
 //    private List<String> keywords;
 
     public MemberInfoResDto(Member member){
         this.memberId = member.getMemberId();
         this.nickname = member.getNickname();
         this.email = member.getEmail();
-        this.address = member.getAddress();
-//        this.favoriteTypes = favoriteTypes;
+        this.location = member.getLocation();
 //        this.keywords = keywords;
     }
 }

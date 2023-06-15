@@ -36,7 +36,8 @@ public class MemberController extends CommController {
 
     @Operation(summary = "맴버 정보 조회", responses = { @ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json", schema = @Schema(implementation = MemberInfoResDto.class)))})
     @GetMapping("/info")
-    public ResponseEntity findMemberInfo(@PathVariable Long memberId){
+    public ResponseEntity findMemberInfo(@AuthenticationPrincipal User user){
+        long memberId = Long.valueOf((user.getUsername()));
         return SuccessReturn(memberService.findMemberInfo(memberId));
     }
 

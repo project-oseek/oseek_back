@@ -43,7 +43,7 @@ spring:
         registration:
           kakao:
             client-secret: 2pjEyvxfFqneHxwelEwy1Ron9nRdCBr4
-            redirect-uri: http://localhost:8080/oauth2/callback/kakao
+            redirect-uri: http://3.37.83.95:8080/oauth2/callback/kakao
             authorization-grant-type: authorization_code
             client-id: 3d14807b0b451bd6893386270fd4f310
             scope: account_email
@@ -62,7 +62,7 @@ jwt:
     expire-length: 1800000
   refresh-token:
     expire-length: 1209600000
-  authorizedRedirectUri : http://localhost:8080/member/redirecttest
+  authorizedRedirectUri : http://localhost:4200/login/auth
 
 logging:
   level:

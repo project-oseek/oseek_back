@@ -50,7 +50,7 @@ dependencies {
     //Redis
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
-
+    implementation 'org.json:json:20210307'
 }
 
 //빌드 시 -plain.jar파일 안만들어지게

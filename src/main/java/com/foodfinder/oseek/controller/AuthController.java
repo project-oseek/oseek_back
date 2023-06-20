@@ -1,4 +1,4 @@
-package com.foodfinder.oseek.controller.auth;
+package com.foodfinder.oseek.controller;
 
 import com.foodfinder.oseek.common.CommController;
 import com.foodfinder.oseek.common.exception.BaseException;

@@ -1,4 +1,4 @@
-package com.foodfinder.oseek.controller.member;
+package com.foodfinder.oseek.controller;
 
 
 import com.foodfinder.oseek.common.CommController;

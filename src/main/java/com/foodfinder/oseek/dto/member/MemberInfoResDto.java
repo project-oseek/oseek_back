@@ -9,13 +9,13 @@ public class MemberInfoResDto {
     private String nickname;
     private String email;
     private String location;
-//    private List<String> keywords;
+    private String isFirstLogin;
 
     public MemberInfoResDto(Member member){
         this.memberId = member.getMemberId();
         this.nickname = member.getNickname();
         this.email = member.getEmail();
         this.location = member.getLocation();
-//        this.keywords = keywords;
+        this.isFirstLogin = member.getIsFirstLogin();
     }
 }

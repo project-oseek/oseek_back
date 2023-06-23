@@ -47,6 +47,8 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
                 throw new RuntimeException("Email already signed up.");
             }
 //            member = updateUser(member, oAuth2UserInfo);
+            member.modifyIsFirstLogin("0");
+            memberRepository.save(member);
         }
         //가입되지 않은 경우
         else {
@@ -62,6 +64,7 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
 //                .oauth2Id(oAuth2UserInfo.getOAuth2Id())
                 .authProvider(authProvider)
                 .role(Role.ROLE_USER)
+                .isFirstLogin("1")
                 .build();
 
         return memberRepository.save(member);

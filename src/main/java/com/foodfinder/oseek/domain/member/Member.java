@@ -30,10 +30,16 @@ public class Member extends RegisterDateBaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    private String isFirstLogin;
+
     public Member modify(MemberModifyReqDto reqDto) {
         this.nickname = reqDto.getNickname();
         this.location = reqDto.getLocation();
         return this;
     }
 
+    public Member modifyIsFirstLogin(String isFirstLogin) {
+        this.isFirstLogin = isFirstLogin;
+        return this;
+    }
 }

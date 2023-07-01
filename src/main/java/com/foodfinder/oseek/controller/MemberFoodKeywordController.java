@@ -1,6 +1,8 @@
 package com.foodfinder.oseek.controller;
 
 import com.foodfinder.oseek.common.CommController;
+import com.foodfinder.oseek.dto.code.CodeResDto;
+import com.foodfinder.oseek.dto.memberFoodKeyword.MemberFoodKeyWordResDto;
 import com.foodfinder.oseek.dto.memberFoodKeyword.MemberFoodKeywordReqDto;
 import com.foodfinder.oseek.service.MemberFoodKeywordService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,4 +33,13 @@ public class MemberFoodKeywordController extends CommController {
         Long memberId = Long.valueOf((user.getUsername()));
         return SuccessReturn(memberFoodKeywordService.saveMemberFoodKeyword(memberId, reqDtoList));
     }
+
+    @Operation(summary = "맴버 음식 키워드 조회", description = "맴버 음식 키워드 리스트 조회합니다.",
+            responses = {@ApiResponse(responseCode = "200", content = @Content(mediaType = "application/json", array = @ArraySchema(schema = @Schema(implementation = MemberFoodKeyWordResDto.class))))})
+    @GetMapping()
+    public ResponseEntity findMemberFoodKeywords(@AuthenticationPrincipal User user){
+        Long memberId = Long.valueOf((user.getUsername()));
+        return SuccessReturn(memberFoodKeywordService.findMemberFoodKeywords(memberId));
+    }
+
 }

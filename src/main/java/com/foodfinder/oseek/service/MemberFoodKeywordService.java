@@ -1,6 +1,7 @@
 package com.foodfinder.oseek.service;
 
 import com.foodfinder.oseek.domain.memberFoodKeyword.MemberFoodKeyword;
+import com.foodfinder.oseek.dto.memberFoodKeyword.MemberFoodKeyWordResDto;
 import com.foodfinder.oseek.dto.memberFoodKeyword.MemberFoodKeywordReqDto;
 import com.foodfinder.oseek.repository.MemberFoodKeywordRepository;
 import lombok.RequiredArgsConstructor;
@@ -34,4 +35,10 @@ public class MemberFoodKeywordService {
         return memberFoodKeywords.size();
     }
 
+    @Transactional
+    public List<MemberFoodKeyWordResDto> findMemberFoodKeywords(Long memberId){
+        return memberFoodKeywordRepository.findAllByMemberId(memberId).stream()
+                .map(MemberFoodKeyWordResDto::new)
+                .collect(Collectors.toList());
+    }
 }
